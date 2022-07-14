@@ -18,17 +18,19 @@ public class CustomerController {
     @Autowired
     private CustomerService service;
 
+    //Get for list all customers
     @GetMapping
     public ResponseEntity<List<CustomerDTO>> findAll() {
         List<CustomerDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
-//    @PostMapping
-//    public ResponseEntity<CustomerDTO> insert(@RequestBody CustomerDTO dto) {
-//        dto = service.insert(dto);
-//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-//                .buildAndExpand(dto.getId()).toUri();
-//        return ResponseEntity.created(uri).body(dto);
-//    }
+    //Get for save a new costumer
+    @PostMapping
+    public ResponseEntity<CustomerDTO> insert(@RequestBody CustomerDTO dto) {
+        dto = service.insert(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(dto.getId()).toUri();
+        return ResponseEntity.created(uri).body(dto);
+    }
 }

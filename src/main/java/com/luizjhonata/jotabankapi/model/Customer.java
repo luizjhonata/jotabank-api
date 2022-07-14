@@ -6,8 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @NoArgsConstructor
-@Entity
-@Table(name = "tb_customer")
+@Entity @Table(name = "tb_customer")
 public class Customer {
 
     @Getter @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

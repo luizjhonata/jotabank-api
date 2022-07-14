@@ -11,8 +11,8 @@ import java.util.Random;
 @Table(name = "tb_account")
 public class Account {
 
-    private static final String DEFAULT_AGENCY = "0001";
-    private static final Double DEFAULT_BALANCE = Double.valueOf(0);
+//    private static final String DEFAULT_AGENCY = "0001";
+//    private static final Double DEFAULT_BALANCE = Double.valueOf(0);
 
     @Getter @Setter @Column(name = "account_number")
     private String numberAccount; //An account need to have a numberAccount
@@ -40,8 +40,8 @@ public class Account {
 //    }
 
     public Account(String numberAccount, String agency, Double balance) {
-        this.numberAccount = numberAccount; //if running some error, change for String.valueOf(randomAccount())
-        this.agency = Account.DEFAULT_AGENCY;
+        this.numberAccount = numberAccount;
+        this.agency = agency;
         this.balance = balance;
     }
 }

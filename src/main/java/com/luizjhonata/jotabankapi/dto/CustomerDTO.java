@@ -21,7 +21,6 @@ public class CustomerDTO {
     @Getter @Setter
     private Account account; //A customer need to have an account
 
-
     public CustomerDTO(Integer id, String cpf, String customerName, Account account) {
         this.id = id;
         this.cpf = cpf;
@@ -34,5 +33,6 @@ public class CustomerDTO {
             cpf = model.getCpf();
             customerName = model.getCustomerName();
             account = model.getAccount();
-        }
+    }
+
 }

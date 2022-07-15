@@ -25,6 +25,18 @@ public class CustomerController {
         return ResponseEntity.ok().body(list);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<List<CustomerDTO>> findById(@PathVariable Integer id) {
+        List<CustomerDTO> list = service.findById(id);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping(value = "/cpf/{cpf}")
+    public ResponseEntity<List<CustomerDTO>> findByCpf(@PathVariable String cpf) {
+        List<CustomerDTO> list = service.findByCpf(cpf);
+        return ResponseEntity.ok(list);
+    }
+
     //Get for save a new costumer
     @PostMapping
     public ResponseEntity<CustomerDTO> insert(@RequestBody CustomerDTO dto) {

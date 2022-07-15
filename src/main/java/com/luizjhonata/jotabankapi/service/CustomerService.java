@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,16 @@ public class CustomerService {
     //Method to list all customers
     public List<CustomerDTO> findAll(){
         List<Customer> list = repository.findAll();
+        return list.stream().map(x -> new CustomerDTO(x)).collect(Collectors.toList());
+    }
+
+    public List<CustomerDTO> findById(Integer id) {
+        Optional<Customer> list = repository.findById(id);
+        return list.stream().map(x -> new CustomerDTO(x)).collect(Collectors.toList());
+    }
+
+    public List<CustomerDTO> findByCpf(String cpf) {
+        List<Customer> list = repository.findByCpf(cpf);
         return list.stream().map(x -> new CustomerDTO(x)).collect(Collectors.toList());
     }
 

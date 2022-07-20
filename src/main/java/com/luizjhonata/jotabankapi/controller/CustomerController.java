@@ -1,6 +1,5 @@
 package com.luizjhonata.jotabankapi.controller;
 
-
 import com.luizjhonata.jotabankapi.dto.CustomerDTO;
 import com.luizjhonata.jotabankapi.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +17,31 @@ public class CustomerController {
     @Autowired
     private CustomerService service;
 
-    //Get for list all customers
+    //Get a list with all customers
     @GetMapping
     public ResponseEntity<List<CustomerDTO>> findAll() {
         List<CustomerDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
+    //Get costumer by id
     @GetMapping(value = "/{id}")
     public ResponseEntity<List<CustomerDTO>> findById(@PathVariable Integer id) {
         List<CustomerDTO> list = service.findById(id);
         return ResponseEntity.ok(list);
     }
 
+    //Get costumer by cpf
+
+    /**
+     *
+     * @param cpf
+     * @return
+     */
     @GetMapping(value = "/cpf/{cpf}")
-    public ResponseEntity<List<CustomerDTO>> findByCpf(@PathVariable String cpf) {
-        List<CustomerDTO> list = service.findByCpf(cpf);
-        return ResponseEntity.ok(list);
+    public ResponseEntity<CustomerDTO> findByCpf(@PathVariable String cpf) {
+        CustomerDTO customer = service.findByCpf(cpf);
+        return ResponseEntity.ok(customer);
     }
 
     //Get for save a new costumer

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Entity @Table(name = "tb_customer")
@@ -26,4 +27,6 @@ public class Customer {
         this.cpf = cpf;
         this.customerName = customerName;
     }
+
+
 }

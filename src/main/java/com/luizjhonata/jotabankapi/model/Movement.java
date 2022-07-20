@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @NoArgsConstructor @Entity @Table(name = "tb_movement")
 public class Movement {
@@ -15,8 +15,8 @@ public class Movement {
     @Getter @Setter @Column(length = 20)
     private String description; //A movement have a description
 
-    @Getter @Setter @Column(name = "date_time")
-    private LocalDateTime moment; //A movement have a moment
+    @Getter @Setter
+    private Instant moment; //A movement have a moment
 
     @Getter @Setter @Column(name = "movement_value")
     private Double value; //A movement need to have a value different from zero
@@ -25,19 +25,19 @@ public class Movement {
     private MovementType type; //A movement need to have a type
 
     @Getter @Setter @Column(name = "origin_account")
-    private String originAccount; //A movement need to have a originAccount
+    private String originCpf; //A originCpf is only used in transfer movements
 
     @Getter @Setter @Column(name = "destination_account")
-    private String destinationAccount; //A destinationAccount is only used in transfer movements
+    private String transferDestinationCpf; //A movement need to have a destinationCpf
 
-    public Movement(Integer id, String description, LocalDateTime moment, Double value, MovementType type,
-                    String originAccount, String destinationAccount) {
+    public Movement(Integer id, String description, Instant moment, Double value, MovementType type,
+                    String originCpf, String transferDestinationCpf) {
         this.id = id;
         this.description = description;
         this.moment = moment;
         this.value = value;
         this.type = type;
-        this.originAccount = originAccount;
-        this.destinationAccount = destinationAccount;
+        this.originCpf = originCpf;
+        this.transferDestinationCpf = transferDestinationCpf;
     }
 }

@@ -24,4 +24,7 @@ public class Account {
         this.agency = agency;
         this.balance = balance;
     }
+
+    public Account(Account x) {
+    }
 }

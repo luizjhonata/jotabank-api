@@ -4,6 +4,7 @@ import com.luizjhonata.jotabankapi.dto.CustomerDTO;
 import com.luizjhonata.jotabankapi.model.Account;
 import com.luizjhonata.jotabankapi.model.Customer;
 import com.luizjhonata.jotabankapi.repository.CustomerRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,25 +23,29 @@ public class CustomerService {
     //Method to list all customers
     public List<CustomerDTO> findAll(){
         List<Customer> list = repository.findAll();
-        return list.stream().map(x -> new CustomerDTO(x)).collect(Collectors.toList());
+        return list.stream().map(CustomerDTO::new).collect(Collectors.toList());
     }
 
     public List<CustomerDTO> findById(Integer id) {
         Optional<Customer> list = repository.findById(id);
-        return list.stream().map(x -> new CustomerDTO(x)).collect(Collectors.toList());
+        return list.stream().map(CustomerDTO::new).collect(Collectors.toList());
     }
 
-    public List<CustomerDTO> findByCpf(String cpf) {
-        List<Customer> list = repository.findByCpf(cpf);
-        return list.stream().map(x -> new CustomerDTO(x)).collect(Collectors.toList());
+
+    //CPF
+    public CustomerDTO findByCpf(String cpf) {
+        Customer customer = repository.findByCpf(cpf);
+        CustomerDTO customerDTO = new CustomerDTO();
+        BeanUtils.copyProperties(customerDTO, customer, "id");
+        return customerDTO;
     }
 
     //Method to generate a random number among 0 and 9 in string format
     public String randomNumberString(){
         Random random = new Random();
-        String randomNumber = Integer.toString(random.nextInt(9));
-        return randomNumber;
+        return Integer.toString(random.nextInt(9));
     }
+
     //Method to generate a random number account, type StringBuilder, with 6 digits
     public StringBuilder randomAccount(){
         StringBuilder AccountNumber = new StringBuilder();
